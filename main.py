@@ -3,8 +3,8 @@ import time
 import random
 import string
 from getpass import getpass
-status_login = False
 
+status_login = False
 user = {
     "1":{
     "no_atm": "1",
@@ -35,7 +35,6 @@ user = {
 
 #Function
 def login():
-
     global login_no_atm
     while True:
         os.system("clear")
@@ -94,6 +93,7 @@ def clear_biodata():
             pass
     else:
         pass
+
 
 
 def clear_biodata_ganti_pin():
@@ -178,7 +178,6 @@ def clear_pin_status_login():
 
 
 
-
 def ulangi_pin_salah(ulang_login_no_atm):
     user[str(login_no_atm)]["pin_salah"]+=1
     print(" Pin yang anda masukkan salah !")
@@ -187,7 +186,6 @@ def ulangi_pin_salah(ulang_login_no_atm):
     if user[str(login_no_atm)]["pin_salah"] == 3:
         #Bug buka blokir
         blokir(ulang_login_no_atm)
-    
     else:
         while True:
             lanjut_salah = input ('\n Tekan enter untuk lanjut/ketik "keluar" untuk keluar: ').lower()
@@ -218,9 +216,6 @@ def ulangi_pin_salah(ulang_login_no_atm):
                     continue
             break
 
-            
-        
-
                 
             
 def cek_status_login(login_no_atm,login_password):
@@ -233,7 +228,6 @@ def cek_status_login(login_no_atm,login_password):
                     time.sleep(1.5)
                 else:
                     ulangi_pin_salah(login_no_atm)
-
         else:
             print(" Akun anda telah terblokir !")
             apakah_buka_blokir = input(" Buka blokir akun ? [y/n]: ").lower()
@@ -241,7 +235,6 @@ def cek_status_login(login_no_atm,login_password):
                 buka_blokir(login_no_atm)
             else:
                 pass
-
     else:
         print("\n Nomor ATM yang anda masukkan salah !")
         time.sleep(1.5)
@@ -264,7 +257,6 @@ def ganti_pin(ubah_pin):
                     time.sleep(1.5)
                     clear_biodata_ganti_pin()
                     continue
-
                 else:
                     pass
                 break
@@ -327,7 +319,6 @@ def ganti_pin(ubah_pin):
                                     print("\n Pin yang anda masukkan tidak sama !\n Demi keamanan, silahkan buat pin baru !\n")
                                     time.sleep(1.5)
                                     continue
-                                    
                                 else:
                                     pass
                                 break
@@ -352,7 +343,8 @@ def ganti_pin(ubah_pin):
     else:
         print("\n Nomor ATM tidak ditemukan !")
 
-     
+
+
 def blokir(blokir_no_atm):
     if blokir_no_atm in user:
         user[str(login_no_atm)].update({"akun":"terblokir"})
@@ -363,7 +355,8 @@ def blokir(blokir_no_atm):
         else:
             pass
 
-        
+
+
 def buka_blokir(buka_blokir_no_atm):
     global ganti_pin_nama,ganti_pin_alamat,ganti_pin_email,ganti_pin_no_telp,status_login,gagal_login
     while True:
@@ -377,7 +370,6 @@ def buka_blokir(buka_blokir_no_atm):
                 time.sleep(1.5)
                 clear_biodata_buka_blokir()
                 continue
-
             else:
                 pass
             break
@@ -446,7 +438,6 @@ def buka_blokir(buka_blokir_no_atm):
 
 
 
-
 def username():
     global login_no_atm
     temukan = user[str(login_no_atm)]["nama"].find(" ")
@@ -454,9 +445,6 @@ def username():
         return f'{user[str(login_no_atm)]["nama"][:temukan]:>{len({user[str(login_no_atm)]["nama"]})}}'.upper()
     else:
         return f'{user[str(login_no_atm)]["nama"]:>{len({user[str(login_no_atm)]["nama"]})}}'.upper()
-
-
-
 
 
 
@@ -473,10 +461,10 @@ def daftar():
             time.sleep(1.5)
             clear_biodata()
             continue
-
         else:
             pass
         break
+
     while True:
         alamat = input(" Masukkan Alamat\t\t\t: ").lstrip().rstrip()
         if alamat == "":
@@ -496,7 +484,7 @@ def daftar():
             clear_biodata()
             continue
         elif "@gmail" not in email :
-            print("\n Format Email yang anda masukkan salah !\n")
+            print("\n Formatgit remote add origin https://github.com/KRP186zL/Project_ATM.git Email yang anda masukkan salah !\n")
             time.sleep(1.5)
             clear_biodata()
             continue
@@ -511,12 +499,10 @@ def daftar():
             time.sleep(1.5)
             clear_biodata()
             continue
-        
         else: 
             break
 
     while True:
-       
         pin = getpass(" Buat pin(pin harus di ingat)\t\t: ")
         if validasi_pin(pin) == False:
             time.sleep(1.5)
@@ -530,13 +516,13 @@ def daftar():
             time.sleep(1.5)
             clear_biodata()
             continue
-            
         else:
             pass
         break
     tambah_user(no_atm,pin,nama.title(),alamat.title(),replace_no_telp,email,saldo=0,pin_salah=0,akun="aktif",transaksi=[])
 
     
+
 def validasi_pin(val_pin):
     angka_pin = list(string.ascii_letters)
     for i in angka_pin:
@@ -549,7 +535,6 @@ def validasi_pin(val_pin):
             return False
         
     return val_pin
-       
 
 
 
@@ -569,7 +554,6 @@ def validasi_no_hp(val_no_telp):
     for j in angka_no_hp:
         if j in angka_no_hp:
             return False
-        
 
 
 
@@ -806,10 +790,7 @@ def cek_saldo():
  {'='*70}""")
         input ("\n Tekan enter untuk kembali...")
 
-# def riwayat_transaksi():
-#     riwayat_transaksi = [str(x) for x in user[str(login_no_atm)]["transaksi"]]
-#     if riwayat_transaksi == []:
-#         print(" Belum ada riwayat transaksi")
+
 
 def clear_nominal_tf(no_rek_transfer):
     os.system("clear")
@@ -821,12 +802,12 @@ def clear_nominal_tf(no_rek_transfer):
         print(f" Masukkan nomor ATM yang ingin anda transfer\t\t: {no_rek_transfer}")
 
 
+
 def struk_transfer(nominal_tf,no_rek_tf,):
     if len(str(nominal_tf))>=7:
         spasi_nom_tf = 37 - len(str(nominal_tf))
     else:
         spasi_nom_tf = 38 - len(str(nominal_tf))
-
     os.system("clear")
     print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
@@ -1007,12 +988,12 @@ def transfer():
         break
 
 
+
 def struk_setor_tunai(nominal_setor_tunai):
     if len(str(nominal_setor_tunai))>=7:
         spasi_nom_tf = 52 - len(str(nominal_setor_tunai))
     else:
         spasi_nom_tf = 53 - len(str(nominal_setor_tunai))
-
     os.system("clear")
     print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
@@ -1048,6 +1029,8 @@ def struk_setor_tunai(nominal_setor_tunai):
  {'='*70}""")
     input(" Tekan enter untuk lanjut...")
 
+
+
 def setor_tunai():
     while True:
         while True:
@@ -1070,14 +1053,14 @@ def setor_tunai():
                 print("\n Hanya berlaku kelipatan Rp.50.000, Rp,100.000, Rp,150.000...")
                 input(" Tekan enter...")
                 continue
-            
         else:
             print(" Setor tunai Min Rp.50,000 Max Rp.10,000,000 !")
             input(" Tekan enter...")
             continue
         break
 
-#TINGGAL TARIK TUNAI
+
+
 def tarik_tunai():
     #PROSES DILAKUKAN DI BAGIAN STRUCK TARIK TUNAI
     while True:
@@ -1099,19 +1082,19 @@ def tarik_tunai():
                 print("\n Hanya berlaku kelipatan Rp.50.000, Rp,100.000, Rp,150.000...")
                 input(" Tekan enter...")
                 continue
-            
         else:
             print(" Tarik tunai Min Rp.50,000 Max Rp.10,000,000 !")
             input(" Tekan enter...")
             continue
         break
 
+
+
 def struk_tarik_tunai(nom_tarik):
     if len(str(nom_tarik))>=7:
         spasi_nom_tf = 52 - len(str(nom_tarik))
     else:
         spasi_nom_tf = 53 - len(str(nom_tarik))
-
     if user[str(login_no_atm)]["saldo"] >= nom_tarik:
         user[str(login_no_atm)]["saldo"]-=nom_tarik
         user[str(login_no_atm)]["transaksi"].append(f"Penarikan tabungan sebesar Rp.{nom_tarik:,}")
@@ -1186,6 +1169,7 @@ def struk_tarik_tunai(nom_tarik):
         input(" Tekan enter untuk lanjut...")
 
 
+
 #Runnning
 while True:
 #Tampilan Awal
@@ -1226,7 +1210,6 @@ while True:
 | {'|':>70}
 | {'|':>70}
  {'='*70}""")
-
             menu_awal = int(input("\n Masukkan Pilihan Anda: "))
             if (menu_awal == 1):
                 login()
@@ -1245,14 +1228,12 @@ while True:
                 print("\n Pilihan tidak tersedia !")
                 time.sleep(1.5)
                 continue
-    
         except ValueError:
             print("\n Mohon gunakan angka untuk memilih Menu !")
             time.sleep(1.5)
             continue
 
-
-    #Tampilan Setelah Login
+#Tampilan Setelah Login
     while status_login == True:
         panjang_username = 67 - 18
         os.system("clear")
@@ -1306,8 +1287,3 @@ while True:
                 time.sleep(1.5)
                 break
             break
-        
-
-
-
-
