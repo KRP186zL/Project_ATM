@@ -1,6 +1,6 @@
 import os
-import fungsi
-from fungsi import *
+import fungsi.fungsi as fungsi
+from fungsi.fungsi import *
 import time
 #Runnning
 while True:
