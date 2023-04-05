@@ -1,11 +1,10 @@
 import os
-import fungsi.fungsi as fungsi
-from fungsi.fungsi import *
+import fungsi
 import time
 #Runnning
 while True:
 #Tampilan Awal
-    while fungsi.status_login == False:
+    while fungsi.fungsi_fungsi.status_login == False:
         os.system("clear")
         try:
             print(f""" {'='*70}\n| {'|':>70}
@@ -44,13 +43,13 @@ while True:
  {'='*70}""")
             menu_awal = int(input("\n Masukkan Pilihan Anda: "))
             if (menu_awal == 1):
-                login()
+                fungsi.fungsi_fungsi.login()
                 continue
             elif (menu_awal == 2):
-                daftar()
+                fungsi.fungsi_fungsi.daftar()
                 continue
             elif (menu_awal == 3):
-                ganti_pin(input(" Masukkan Nomor ATM yang ingin diganti Pin nya: "))
+                fungsi.fungsi_fungsi.ganti_pin(input(" Masukkan Nomor ATM yang ingin diganti Pin nya: "))
                 time.sleep(1.5)
                 continue
             elif (menu_awal == 4):
@@ -66,7 +65,7 @@ while True:
             continue
 
 #Tampilan Setelah Login
-    while fungsi.status_login == True:
+    while fungsi.fungsi_fungsi.status_login == True:
         panjang_username = 67 - 18
         os.system("clear")
         print(f""" {'='*70}\n| {'|':>70}
@@ -80,7 +79,7 @@ while True:
 |{time.asctime(time.localtime(time.time())):>65} {'|':>5}
 | {'|':>70}
 | {'Selamat datang,':>18} {'|':>51}
-| {username():^20} {'|':>{panjang_username}}
+| {fungsi.fungsi_fungsi.username():^20} {'|':>{panjang_username}}
 | {'|':>70}
 | {'|':>70}
 |{'selamat datang di bank wibu indonesia'.upper():^70}|
@@ -101,18 +100,18 @@ while True:
             try:
                 menu = int(input(" Silahkan Pilih Menu: "))
                 if menu == 1:
-                    transfer()
+                    fungsi.fungsi_fungsi.transfer()
                 elif menu == 2:
-                    cek_saldo()
+                    fungsi.fungsi_fungsi.cek_saldo()
                 elif menu == 3:
-                    setor_tunai()
+                    fungsi.fungsi_fungsi.setor_tunai()
                 elif menu == 4:
-                    tarik_tunai()
+                    fungsi.fungsi_fungsi.tarik_tunai()
                 elif menu == 5:
                     print("\n\n Berhasil Logout !")
                     print("\n Terimakasih sudah menggunakan layanan kami :)")
                     time.sleep(1.5)
-                    fungsi.status_login = False
+                    fungsi.fungsi_fungsi.status_login = False
                     break
             except ValueError:
                 print(" Gunakan angka untuk memilih !")
