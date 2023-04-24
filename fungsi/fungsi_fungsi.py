@@ -177,7 +177,7 @@ def clear_pin_status_login():
 
 
 
-def ulangi_pin_salah(ulang_login_no_atm):
+def ulangi_pin_salah(ulang_login_no_atm:int)->int:
     user[str(login_no_atm)]["pin_salah"]+=1
     print(" Pin yang anda masukkan salah !")
     print("\n 3x salah Pin akun anda akan terblokir !".upper())
@@ -217,7 +217,7 @@ def ulangi_pin_salah(ulang_login_no_atm):
 
                 
             
-def cek_status_login(login_no_atm,login_password):
+def cek_status_login(login_no_atm:int,login_password:int)->int:
     if login_no_atm in user:
         global status_login
         if user[login_no_atm]["akun"] == "aktif":
@@ -241,7 +241,7 @@ def cek_status_login(login_no_atm,login_password):
 
 
     
-def ganti_pin(ubah_pin):
+def ganti_pin(ubah_pin:int)->int:
     global ganti_pin_nama,ganti_pin_alamat,ganti_pin_email,ganti_pin_no_telp
     os.system("clear")
     if ubah_pin in user:
@@ -324,7 +324,7 @@ def ganti_pin(ubah_pin):
     else:
         print("\n Nomor ATM tidak ditemukan !")
 
-def pin_baru (ubah_pin):
+def pin_baru (ubah_pin:int)->int:
     while True:
         os.system("clear")
         print(f"{'SELAMAT DATANG DI BANK WIBU INDONESIA':^70}")
@@ -347,7 +347,7 @@ def pin_baru (ubah_pin):
     print(" Pin berhasil di ganti !")
     time.sleep(1.5)
 
-def blokir(blokir_no_atm):
+def blokir(blokir_no_atm:int)->int:
     if blokir_no_atm in user:
         user[str(login_no_atm)].update({"akun":"terblokir"})
         print(" Akun anda telah terblokir !")
@@ -359,7 +359,7 @@ def blokir(blokir_no_atm):
 
 
 
-def buka_blokir(buka_blokir_no_atm):
+def buka_blokir(buka_blokir_no_atm:int)->int:
     global ganti_pin_nama,ganti_pin_alamat,ganti_pin_email,ganti_pin_no_telp,status_login,gagal_login
     while True:
         os.system("clear")
@@ -525,7 +525,7 @@ def daftar():
 
     
 
-def validasi_pin(val_pin):
+def validasi_pin(val_pin:int)->int:
     angka_pin = list(string.ascii_letters)
     for i in angka_pin:
         if i in val_pin :
@@ -540,7 +540,7 @@ def validasi_pin(val_pin):
 
 
 
-def validasi_no_hp(val_no_telp):
+def validasi_no_hp(val_no_telp:int)->int:
     global replace_no_telp
     angka_no_hp = list(string.ascii_letters)
     if val_no_telp.startswith("628") or val_no_telp.startswith("+628"):
@@ -559,7 +559,7 @@ def validasi_no_hp(val_no_telp):
 
 
 
-def tambah_user(no_atm,pin,nama,alamat,no_telp,email,saldo,pin_salah,akun,transaksi):
+def tambah_user(no_atm:int,pin:int,nama:str,alamat:str,no_telp:int,email:str,saldo:int,pin_salah:int,akun:str,transaksi:list)->any:
     global user
     user.update({
         no_atm:{
@@ -795,7 +795,7 @@ def cek_saldo():
 
 
 
-def clear_nominal_tf(no_rek_transfer):
+def clear_nominal_tf(no_rek_transfer:int)->int:
     os.system("clear")
     print(f"{'selamat datang di bank wibu indonesia'.upper():^70}")
     print(f"{'mohon di cek kembali no atm yang akan di transfer'.upper():^70}\n\n")
@@ -806,7 +806,7 @@ def clear_nominal_tf(no_rek_transfer):
 
 
 
-def struk_transfer(nominal_tf,no_rek_tf,):
+def struk_transfer(nominal_tf:int,no_rek_tf:int)->int:
     if len(str(nominal_tf))>=7:
         spasi_nom_tf = 37 - len(str(nominal_tf))
     else:
@@ -992,7 +992,7 @@ def transfer():
 
 
 
-def struk_setor_tunai(nominal_setor_tunai):
+def struk_setor_tunai(nominal_setor_tunai:int)->int:
     if len(str(nominal_setor_tunai))>=7:
         spasi_nom_tf = 52 - len(str(nominal_setor_tunai))
     else:
@@ -1093,7 +1093,7 @@ def tarik_tunai():
 
 
 
-def struk_tarik_tunai(nom_tarik):
+def struk_tarik_tunai(nom_tarik:int)->int:
     if len(str(nom_tarik))>=7:
         spasi_nom_tf = 52 - len(str(nom_tarik))
     else:

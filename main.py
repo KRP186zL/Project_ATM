@@ -2,12 +2,16 @@ import os
 import fungsi
 import time
 #Runnning
-while True:
-#Tampilan Awal
-    while fungsi.fungsi_fungsi.status_login == False:
-        os.system("clear")
-        try:
-            print(f""" {'='*70}\n| {'|':>70}
+if __name__ == "__main__":
+    sistem_operasi = os.name
+    while True:
+    #Tampilan Awal
+        while fungsi.fungsi_fungsi.status_login == False:
+            match sistem_operasi:
+                case "posix": os.system("clear")
+                case "nt": os.system("cls")
+            try:
+                print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
 |{'JL.Menuju Isekai No. 27':^70}|
 |{'Telp: 0270403':^70}|
@@ -41,34 +45,36 @@ while True:
 | {'|':>70}
 | {'|':>70}
  {'='*70}""")
-            menu_awal = int(input("\n Masukkan Pilihan Anda: "))
-            if (menu_awal == 1):
-                fungsi.fungsi_fungsi.login()
-                continue
-            elif (menu_awal == 2):
-                fungsi.fungsi_fungsi.daftar()
-                continue
-            elif (menu_awal == 3):
-                fungsi.fungsi_fungsi.ganti_pin(input(" Masukkan Nomor ATM yang ingin diganti Pin nya: "))
+                menu_awal = int(input("\n Masukkan Pilihan Anda: "))
+                if (menu_awal == 1):
+                    fungsi.fungsi_fungsi.login()
+                    continue
+                elif (menu_awal == 2):
+                    fungsi.fungsi_fungsi.daftar()
+                    continue
+                elif (menu_awal == 3):
+                    fungsi.fungsi_fungsi.ganti_pin(input(" Masukkan Nomor ATM yang ingin diganti Pin nya: "))
+                    time.sleep(1.5)
+                    continue
+                elif (menu_awal == 4):
+                    print("\n Terimakasih sudah menggunakan layanan kami ! \n\n\n\n\n\n\n\n\n\n\n\n PESAN RAHASIA!\n Saya harap anda sadar, bahwa Waifu anda itu tidaklah nyata...")
+                    exit()
+                else:
+                    print("\n Pilihan tidak tersedia !")
+                    time.sleep(1.5)
+                    continue
+            except ValueError:
+                print("\n Mohon gunakan angka untuk memilih Menu !")
                 time.sleep(1.5)
                 continue
-            elif (menu_awal == 4):
-                print("\n Terimakasih sudah menggunakan layanan kami ! \n\n\n\n\n\n\n\n\n\n\n\n PESAN RAHASIA!\n Saya harap anda sadar, bahwa Waifu anda itu tidaklah nyata...")
-                exit()
-            else:
-                print("\n Pilihan tidak tersedia !")
-                time.sleep(1.5)
-                continue
-        except ValueError:
-            print("\n Mohon gunakan angka untuk memilih Menu !")
-            time.sleep(1.5)
-            continue
 
-#Tampilan Setelah Login
-    while fungsi.fungsi_fungsi.status_login == True:
-        panjang_username = 67 - 18
-        os.system("clear")
-        print(f""" {'='*70}\n| {'|':>70}
+    #Tampilan Setelah Login
+        while fungsi.fungsi_fungsi.status_login == True:
+            panjang_username = 67 - 18
+            match sistem_operasi:
+                case "posix": os.system("clear")
+                case "nt": os.system("cls")
+            print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
 |{'JL.Menuju Isekai No. 27':^70}|
 |{'Telp: 0270403':^70}|
@@ -96,25 +102,25 @@ while True:
 | {'|':>70}
 | {'|':>70}
  {'='*70}""")
-        while True:
-            try:
-                menu = int(input(" Silahkan Pilih Menu: "))
-                if menu == 1:
-                    fungsi.fungsi_fungsi.transfer()
-                elif menu == 2:
-                    fungsi.fungsi_fungsi.cek_saldo()
-                elif menu == 3:
-                    fungsi.fungsi_fungsi.setor_tunai()
-                elif menu == 4:
-                    fungsi.fungsi_fungsi.tarik_tunai()
-                elif menu == 5:
-                    print("\n\n Berhasil Logout !")
-                    print("\n Terimakasih sudah menggunakan layanan kami :)")
+            while True:
+                try:
+                    menu = int(input(" Silahkan Pilih Menu: "))
+                    if menu == 1:
+                        fungsi.fungsi_fungsi.transfer()
+                    elif menu == 2:
+                        fungsi.fungsi_fungsi.cek_saldo()
+                    elif menu == 3:
+                        fungsi.fungsi_fungsi.setor_tunai()
+                    elif menu == 4:
+                        fungsi.fungsi_fungsi.tarik_tunai()
+                    elif menu == 5:
+                        print("\n\n Berhasil Logout !")
+                        print("\n Terimakasih sudah menggunakan layanan kami :)")
+                        time.sleep(1.5)
+                        fungsi.fungsi_fungsi.status_login = False
+                        break
+                except ValueError:
+                    print(" Gunakan angka untuk memilih !")
                     time.sleep(1.5)
-                    fungsi.fungsi_fungsi.status_login = False
                     break
-            except ValueError:
-                print(" Gunakan angka untuk memilih !")
-                time.sleep(1.5)
                 break
-            break
