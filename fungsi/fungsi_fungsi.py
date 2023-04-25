@@ -4,6 +4,7 @@ import random
 import string
 from getpass import getpass
 status_login = False
+sistem_operasi= os.name
 user = {
     "1":{
     "no_atm": "1",
@@ -36,7 +37,9 @@ user = {
 def login():
     global login_no_atm
     while True:
-        os.system("clear")
+        match sistem_operasi:
+            case "posix": os.system("clear")
+            case "nt": os.system("cls")
         print(f"{'SELAMAT DATANG DI BANK WIBU INDONESIA':^70}\n{'SILAHKAN LOGIN TERLEBIH DAHULU!':^70}\n\n")
         try:
             login_no_atm = int(input((" Masukkan Nomor ATM anda: ")))
@@ -61,7 +64,9 @@ def login():
 
 # buat clear biodata
 def clear_biodata():
-    os.system("clear")
+    match sistem_operasi:
+        case "posix": os.system("clear")
+        case "nt": os.system("cls")
     print(f'\n{"PROSES PENDAFTARAN BANK WIBU INDONESIA":^70}\n{"SILAHKAN ISI DATA DIRI ANDA!":^70}\n\n')
     daftar_nama = []
     daftar_alamat= []
@@ -96,7 +101,9 @@ def clear_biodata():
 
 
 def clear_biodata_ganti_pin():
-    os.system("clear")
+    match sistem_operasi:
+        case "posix": os.system("clear")
+        case "nt": os.system("cls")
     print(f"{'SELAMAT DATANG DI BANK WIBU INDONESIA':^70}")
     print(f'{" Silahkan isi data dibawah untuk mengganti Pin".upper():^70}\n\n')
     daftar_nama = []
@@ -132,7 +139,9 @@ def clear_biodata_ganti_pin():
 
 
 def clear_biodata_buka_blokir():
-    os.system("clear")
+    match sistem_operasi:
+        case "posix": os.system("clear")
+        case "nt": os.system("cls")
     print(f"{'SELAMAT DATANG DI BANK WIBU INDONESIA':^70}")
     print(f'{"Silahkan isi data dibawah untuk membuka blokir".upper():^70}\n\n')
     daftar_nama = []
@@ -168,7 +177,9 @@ def clear_biodata_buka_blokir():
 
 
 def clear_pin_status_login():
-    os.system("clear")
+    match sistem_operasi:
+        case "posix": os.system("clear")
+        case "nt": os.system("cls")
     print(f"{'SELAMAT DATANG DI BANK WIBU INDONESIA':^70}\n{'SILAHKAN LOGIN TERLEBIH DAHULU!':^70}\n\n")
     nomor_kartu = []
     nomor_kartu.append(login_no_atm)
@@ -243,7 +254,9 @@ def cek_status_login(login_no_atm:int,login_password:int)->int:
     
 def ganti_pin(ubah_pin:int)->int:
     global ganti_pin_nama,ganti_pin_alamat,ganti_pin_email,ganti_pin_no_telp
-    os.system("clear")
+    match sistem_operasi:
+        case "posix": os.system("clear")
+        case "nt": os.system("cls")
     if ubah_pin in user:
         if user[ubah_pin]["akun"]=="aktif":
         # print(" Selamat datang,\n",user[ubah_pin]["nama"]+"\n")
@@ -326,7 +339,9 @@ def ganti_pin(ubah_pin:int)->int:
 
 def pin_baru (ubah_pin:int)->int:
     while True:
-        os.system("clear")
+        match sistem_operasi:
+            case "posix": os.system("clear")
+            case "nt": os.system("cls")
         print(f"{'SELAMAT DATANG DI BANK WIBU INDONESIA':^70}")
         print(f'{"MASUKKAN PIN BARU, MOHON PIN UNTUK SELALU DI INGAT ! ".upper():^70}\n\n')
         pin_baru = getpass(" Buat pin(pin harus di ingat)\t\t: ")
@@ -362,7 +377,9 @@ def blokir(blokir_no_atm:int)->int:
 def buka_blokir(buka_blokir_no_atm:int)->int:
     global ganti_pin_nama,ganti_pin_alamat,ganti_pin_email,ganti_pin_no_telp,status_login,gagal_login
     while True:
-        os.system("clear")
+        match sistem_operasi:
+            case "posix": os.system("clear")
+            case "nt": os.system("cls")
         print(f"{'selamat datang di bank wibu indonesia'.upper():^70}")
         print(f"{'Silahkan isi data dibawah untuk membuka blokir'.upper():^70}\n\n")
         while True:
@@ -452,7 +469,9 @@ def username():
 
 def daftar():
     global nama,alamat,no_telp,email,angka_pin
-    os.system("clear")
+    match sistem_operasi:
+        case "posix": os.system("clear")
+        case "nt": os.system("cls")
     random_angka = [str(x) for x in range(1,11)]
     no_atm = "".join((random.choice(random_angka) for i in range(10)))
     print(f'\n{"PROSES PENDAFTARAN BANK WIBU INDONESIA":^70}\n{"SILAHKAN ISI DATA DIRI ANDA!":^70}\n\n')
@@ -588,7 +607,9 @@ def cek_saldo():
     panjang_username = 67 - 18
     riwayat_transaksi = [x for x in user[str(login_no_atm)]["transaksi"]]
     if len(riwayat_transaksi) ==0:
-        os.system("clear")
+        match sistem_operasi:
+            case "posix": os.system("clear")
+            case "nt": os.system("cls")
         print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
 |{'JL.Menuju Isekai No. 27':^70}|
@@ -619,7 +640,9 @@ def cek_saldo():
         input ("\n Tekan enter untuk kembali...")
 
     if len(riwayat_transaksi) ==1:
-        os.system("clear")
+        match sistem_operasi:
+            case "posix": os.system("clear")
+            case "nt": os.system("cls")
         print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
 |{'JL.Menuju Isekai No. 27':^70}|
@@ -650,7 +673,9 @@ def cek_saldo():
         input ("\n Tekan enter untuk kembali...")
 
     if len(riwayat_transaksi) ==2:
-        os.system("clear")
+        match sistem_operasi:
+            case "posix": os.system("clear")
+            case "nt": os.system("cls")
         print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
 |{'JL.Menuju Isekai No. 27':^70}|
@@ -683,7 +708,9 @@ def cek_saldo():
         input ("\n Tekan enter untuk kembali...")
 
     if len(riwayat_transaksi) ==3:
-        os.system("clear")
+        match sistem_operasi:
+            case "posix": os.system("clear")
+            case "nt": os.system("cls")
         print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
 |{'JL.Menuju Isekai No. 27':^70}|
@@ -718,7 +745,9 @@ def cek_saldo():
         input ("\n Tekan enter untuk kembali...")
 
     if len(riwayat_transaksi) ==4:
-        os.system("clear")
+        match sistem_operasi:
+            case "posix": os.system("clear")
+            case "nt": os.system("cls")
         print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
 |{'JL.Menuju Isekai No. 27':^70}|
@@ -755,7 +784,9 @@ def cek_saldo():
         input ("\n Tekan enter untuk kembali...")
 
     if len(riwayat_transaksi) >=5:
-        os.system("clear")
+        match sistem_operasi:
+            case "posix": os.system("clear")
+            case "nt": os.system("cls")
         print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
 |{'JL.Menuju Isekai No. 27':^70}|
@@ -796,7 +827,9 @@ def cek_saldo():
 
 
 def clear_nominal_tf(no_rek_transfer:int)->int:
-    os.system("clear")
+    match sistem_operasi:
+        case "posix": os.system("clear")
+        case "nt": os.system("cls")
     print(f"{'selamat datang di bank wibu indonesia'.upper():^70}")
     print(f"{'mohon di cek kembali no atm yang akan di transfer'.upper():^70}\n\n")
     nominal_transfer= []
@@ -811,7 +844,9 @@ def struk_transfer(nominal_tf:int,no_rek_tf:int)->int:
         spasi_nom_tf = 37 - len(str(nominal_tf))
     else:
         spasi_nom_tf = 38 - len(str(nominal_tf))
-    os.system("clear")
+    match sistem_operasi:
+        case "posix": os.system("clear")
+        case "nt": os.system("cls")
     print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
 |{'JL.Menuju Isekai No. 27':^70}|
@@ -850,7 +885,9 @@ def struk_transfer(nominal_tf:int,no_rek_tf:int)->int:
             user[str(no_rek_tf)]["saldo"]+= nominal_tf
             user[str(no_rek_tf)]["transaksi"].append(f"Menerima uang Rp.{nominal_tf:,} dari {nama_pengirim} ")
             time.sleep(2.5)
-            os.system("clear")
+            match sistem_operasi:
+                case "posix": os.system("clear")
+                case "nt": os.system("cls")
             print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
 |{'JL.Menuju Isekai No. 27':^70}|
@@ -881,7 +918,9 @@ def struk_transfer(nominal_tf:int,no_rek_tf:int)->int:
             input(" Tekan enter untuk lanjut...")
         else:
             time.sleep(2.5)
-            os.system("clear")
+            match sistem_operasi:
+                case "posix": os.system("clear")
+                case "nt": os.system("cls")
             print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
 |{'JL.Menuju Isekai No. 27':^70}|
@@ -912,7 +951,9 @@ def struk_transfer(nominal_tf:int,no_rek_tf:int)->int:
             input(" Tekan enter untuk lanjut...")
     else:
         time.sleep(2.5)
-        os.system("clear")
+        match sistem_operasi:
+            case "posix": os.system("clear")
+            case "nt": os.system("cls")
         print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
 |{'JL.Menuju Isekai No. 27':^70}|
@@ -945,7 +986,9 @@ def struk_transfer(nominal_tf:int,no_rek_tf:int)->int:
 
 def transfer():
     while True:
-        os.system("clear")
+        match sistem_operasi:
+            case "posix": os.system("clear")
+            case "nt": os.system("cls")
         print(f"{'selamat datang di bank wibu indonesia'.upper():^70}")
         print(f"{'mohon di cek kembali no atm yang akan di transfer'.upper():^70}\n\n")
         try:
@@ -997,7 +1040,9 @@ def struk_setor_tunai(nominal_setor_tunai:int)->int:
         spasi_nom_tf = 52 - len(str(nominal_setor_tunai))
     else:
         spasi_nom_tf = 53 - len(str(nominal_setor_tunai))
-    os.system("clear")
+    match sistem_operasi:
+        case "posix": os.system("clear")
+        case "nt": os.system("cls")
     print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
 |{'JL.Menuju Isekai No. 27':^70}|
@@ -1037,7 +1082,9 @@ def struk_setor_tunai(nominal_setor_tunai:int)->int:
 def setor_tunai():
     while True:
         while True:
-            os.system("clear")
+            match sistem_operasi:
+                case "posix": os.system("clear")
+                case "nt": os.system("cls")
             print(f"{'selamat datang di bank wibu indonesia'.upper():^70}")
             print(f"{'Pastikan uang yang anda masukkan tidak terlipat !'.upper():^70}\n\n")
             try:
@@ -1068,7 +1115,9 @@ def tarik_tunai():
     #PROSES DILAKUKAN DI BAGIAN STRUCK TARIK TUNAI
     while True:
         while True:
-            os.system("clear")
+            match sistem_operasi:
+                case "posix": os.system("clear")
+                case "nt": os.system("cls")
             print(f"{'selamat datang di bank wibu indonesia'.upper():^70}")
             print(f"{'cukup uang saja yang virtual, hubungan jangan !'.upper():^70}\n\n")
             try:
@@ -1101,7 +1150,9 @@ def struk_tarik_tunai(nom_tarik:int)->int:
     if user[str(login_no_atm)]["saldo"] >= nom_tarik:
         user[str(login_no_atm)]["saldo"]-=nom_tarik
         user[str(login_no_atm)]["transaksi"].append(f"Penarikan tabungan sebesar Rp.{nom_tarik:,}")
-        os.system("clear")
+        match sistem_operasi:
+            case "posix": os.system("clear")
+            case "nt": os.system("cls")
         print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
 |{'JL.Menuju Isekai No. 27':^70}|
@@ -1136,7 +1187,9 @@ def struk_tarik_tunai(nom_tarik:int)->int:
  {'='*70}""")
         input(" Tekan enter untuk lanjut...")
     else:
-        os.system("clear")
+        match sistem_operasi:
+            case "posix": os.system("clear")
+            case "nt": os.system("cls")
         print(f""" {'='*70}\n| {'|':>70}
 |{'Bank Wibu Negara Indonesia':^70}| 
 |{'JL.Menuju Isekai No. 27':^70}|

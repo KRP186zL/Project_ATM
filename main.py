@@ -3,11 +3,10 @@ import fungsi
 import time
 #Runnning
 if __name__ == "__main__":
-    sistem_operasi = os.name
     while True:
     #Tampilan Awal
         while fungsi.fungsi_fungsi.status_login == False:
-            match sistem_operasi:
+            match fungsi.fungsi_fungsi.sistem_operasi:
                 case "posix": os.system("clear")
                 case "nt": os.system("cls")
             try:
@@ -71,7 +70,7 @@ if __name__ == "__main__":
     #Tampilan Setelah Login
         while fungsi.fungsi_fungsi.status_login == True:
             panjang_username = 67 - 18
-            match sistem_operasi:
+            match fungsi.fungsi_fungsi.sistem_operasi:
                 case "posix": os.system("clear")
                 case "nt": os.system("cls")
             print(f""" {'='*70}\n| {'|':>70}
